@@ -31,7 +31,7 @@ int main(void){
 	}
 
 //***************************UPISUJEMO U /dev/bram_b***************************
-
+/*
 	fp = fopen("/dev/bram_b", "w");
 	
 	if(fp==NULL){
@@ -48,7 +48,7 @@ int main(void){
 		printf("Problem pri zatvaranju /dev/bram_b.\n");
 		return -1;	
 	}
-
+*/
 //*************************************************************************************************************
 
 fp = fopen("/dev/IMDCT", "w");
