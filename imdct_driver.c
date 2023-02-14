@@ -235,16 +235,11 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
     printk(KERN_NOTICE"buff = %s",buff);
     printk(KERN_NOTICE"length = %zu",length);
 
-   // if( endIMDCT = 1){
-     //   endIMDCT = 0;
-      //  return 0;
-    //}
-
     if(minor == 0){ //ako upisujemo u bram_a
     
         sscanf(buff, "[%d] = %d", &bram_pos, &value);
 
-        if (xpos > 1152)
+        if (bram_pos > BRAM_SIZE)
         {
             printk(KERN_WARNING"bram_a: position exceeded maximum value \n");
         }
@@ -268,21 +263,17 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
 
     if(minor == 1){ //ako upisujemo u bram_b
     
-        for(i=0; i<length; i++){
-            if(buff[i] == ','){
-                buff_1[j] = '\0';
-                ret = kstrtoull(buff_1,0, &a); 
-                //printk(KERN_NOTICE"a=%d",a);
-                bram_b[m] = a;
-                j = 0;
-                m++;
-            } else{
-                buff_1[j] = buff[i];
-                //printk(KERN_NOTICE"buff[%d]=%d",i,buff[i]);
-                //printk(KERN_NOTICE"buff_1[%d]=%d",j,buff_1[j]);
-                j++;
-            }
+        sscanf(buff, "[%d] = %d", &bram_pos, &value);
+
+        if (bram_pos > BRAM_SIZE)
+        {
+            printk(KERN_WARNING"bram_b: position exceeded maximum value \n");
         }
+        else
+        {
+            bram_a[bram_pos] = value;
+        }
+
         for(j = 0; j < 576; j++ ){
                 //samples2[1][0][j] = 2;
                 samples2[0][0][j] = bram_b[j];
