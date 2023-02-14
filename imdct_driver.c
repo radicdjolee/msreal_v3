@@ -73,8 +73,6 @@ int i = 0;
 int bram_a[BRAM_SIZE];
 int bram_b[BRAM_SIZE];
 
-
-
 int samples2[2][2][576];
 unsigned int start, gr, ch, ready;
 

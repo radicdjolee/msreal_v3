@@ -213,7 +213,7 @@ fp = fopen("/dev/IMDCT", "w");
 fp = fopen("/dev/bram_a", "r");
 	
 	if(fp==NULL){
-		printf("Nije moguce otvoriti /dev/matmul.\n");
+		printf("Nije moguce otvoriti /dev/bram_a.\n");
 		return -1;
 	}
 	
@@ -221,7 +221,24 @@ fp = fopen("/dev/bram_a", "r");
 	getline(&str, &broj_bajtova, fp);
 	
 	if(fclose(fp)){
-		printf("Problem pri zatvaranju /dev/matmul.\n");
+		printf("Problem pri zatvaranju /dev/bram_a.\n");
+		return -1;	
+	}
+
+	free(str);
+
+fp = fopen("/dev/bram_b", "r");
+	
+	if(fp==NULL){
+		printf("Nije moguce otvoriti /dev/bram_b.\n");
+		return -1;
+	}
+	
+	str = (char *)malloc(broj_bajtova+1);
+	getline(&str, &broj_bajtova, fp);
+	
+	if(fclose(fp)){
+		printf("Problem pri zatvaranju /dev/bram_b.\n");
 		return -1;	
 	}
 
