@@ -452,7 +452,7 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
                     //printk(KERN_WARNING"bram_b[%d]: %d\n",i, bram_b[i]); 
                 }
 
-            
+            printk(KERN_ALERT"ZAVRSENA OBRADA");
                 
         }else{
             ready = 0;

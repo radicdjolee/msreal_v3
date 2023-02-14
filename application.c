@@ -216,11 +216,7 @@ fp = fopen("/dev/IMDCT", "w");
 	printf("	********************************\n");
 	
 	fputs("start = 1",fp);
-	sleep(0.5);
-	sleep(0.5);
-	sleep(0.5);
-	sleep(0.5);
-	
+	sleep(10);
 if(fclose(fp)){
 		
 	printf("Problem pri zatvaranju /dev/IMDCT.\n");
