@@ -283,7 +283,7 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
 			case_vr = 2;
 		}else if(strcmp(string, block_type_01_1)==0){
 			case_vr = 3;
-		}else if(strcmp(string, block_type_01_1)==0){
+		}else if(strcmp(string, block_type_10_1)==0){
 			case_vr = 4;
 		}else if(strcmp(string, block_type_11_1)==0){
 			case_vr = 5;
