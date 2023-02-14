@@ -54,7 +54,7 @@ int main(void){
 	}
 */
 //*************************************************************************************************************
-/*
+
 fp = fopen("/dev/IMDCT", "w");
 	
 	if(fp==NULL){
@@ -75,7 +75,7 @@ fp = fopen("/dev/IMDCT", "w");
 		printf("Problem pri zatvaranju /dev/IMDCT.\n");
 		return -1;	
     }
-
+/*
 fp = fopen("/dev/IMDCT", "w");
 	
 	if(fp==NULL){
@@ -201,7 +201,7 @@ fp = fopen("/dev/IMDCT", "w");
 		printf("Problem pri zatvaranju /dev/IMDCT.\n");
 		return -1;	
     }
-*/
+
 fp = fopen("/dev/IMDCT", "w");
 	
 	if(fp==NULL){
@@ -246,7 +246,7 @@ fp = fopen("/dev/bram_a", "r");
 		
 	}
 	free(str);
-
+*/
 
 	return 0;
 }
