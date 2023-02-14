@@ -141,7 +141,7 @@ ssize_t IMDCT_read(struct file *f, char __user *buffer, size_t length, loff_t *o
     ssize_t bram_a_size;
     minor = MINOR(f->f_inode->i_rdev);
     printk("IMDCT read: %d minor\n", minor);
-    printk(KERN_NOTICE "Device file is rad at offset = %i, read bytes count =%u\n",(int)*offset, (unsigned int)length);
+    //printk(KERN_NOTICE "Device file is rad at offset = %i, read bytes count =%u\n",(int)*offset, (unsigned int)length);
 
     if(endRead == 1){
         endRead = 0;
@@ -153,19 +153,19 @@ ssize_t IMDCT_read(struct file *f, char __user *buffer, size_t length, loff_t *o
         value = bram_a[q];
         len = scnprintf(buff,BRAM_SIZE, "%d,", value);
         *offset += len;
-        printk(KERN_NOTICE"buff = %s",buff);
+
+        printk(KERN_NOTICE"buff[%d] = %s", q, buff);
         ret = copy_to_user(buffer, buff, len);
         if(ret){
             return -EFAULT;
 		}
-        printk(KERN_NOTICE"q = %d",q);
+
         q++;
         if( q > BRAM_SIZE ){
             endRead =1;
             q = 0;
         }
 
-        printk("MINOR 0 read\n");
     }   
 
     if(minor == 1){ //citamo iz bram_b
@@ -173,18 +173,18 @@ ssize_t IMDCT_read(struct file *f, char __user *buffer, size_t length, loff_t *o
         value = bram_b[q];
         len = scnprintf(buff,BRAM_SIZE, "%d,", value);
         *offset += len;
-        printk(KERN_NOTICE"buff = %s",buff);
+        printk(KERN_NOTICE"buff[%d] = %s", q, buff);
         ret = copy_to_user(buffer, buff, len);
         if(ret){
             return -EFAULT;
 		}
-        printk(KERN_NOTICE"k = %d",q);
+
         q++;
         if( q > BRAM_SIZE ){
             endRead =1;
             q = 0;
         }
-        printk("MINOR 1 read\n");
+       
     }
 
     if(minor == 2){ //citamo iz IMDCT
@@ -408,7 +408,7 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
                 } 
                 
 
-                printk(KERN_ALERT"IZASAO IZ FOROVA");
+               //printk(KERN_ALERT"IZASAO IZ FOROVA");
                 
                 if (block_type[gr][ch] == 2) {
 	    	    	
@@ -443,13 +443,13 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
                     bram_a[i] = samples2[0][0][i];
                     //printk(KERN_WARNING"bram_a[%d]: %d\n",i, bram_a[i]); 
                     bram_b[i] = samples2[1][0][i];
-                    printk(KERN_WARNING"bram_b[%d]: %d\n",i, bram_b[i]); 
+                   // printk(KERN_WARNING"bram_b[%d]: %d\n",i, bram_b[i]); 
                 }   
                 for(i = 576; i < 1152; i++){
                     bram_a[i] = samples2[0][1][i]; 
                     //printk(KERN_WARNING"bram_a[%d]: %d\n",i, bram_a[i]); 
                     bram_b[i] = samples2[1][1][i];
-                    printk(KERN_WARNING"bram_b[%d]: %d\n",i, bram_b[i]); 
+                    //printk(KERN_WARNING"bram_b[%d]: %d\n",i, bram_b[i]); 
                 }
 
             
