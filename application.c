@@ -27,8 +27,8 @@ int main(void){
 	}
 
 	for( i=0; i<1152; i++ ){
-		fprintf(fs, "[%s] = %d",i, 2);
-		fflush(fs);
+		fprintf(fp, "[%d] = 2",i);
+		fflush(fp);
 	}
 
 	if(fclose(fp)){	
@@ -221,6 +221,31 @@ fp = fopen("/dev/IMDCT", "w");
 		printf("Problem pri zatvaranju /dev/IMDCT.\n");
 		return -1;	
     }
+
+	printf("	*************************\n");
+	printf("	**Rezultat IMDCT**\n");
+	printf("	*************************\n");
+	
+	fp = fopen("/dev/bram_a", "r");
+	
+	if(fp==NULL){
+		
+		printf("Nije moguce otvoriti /dev/matmul.\n");
+		return -1;
+		
+	}
+	
+	str = (char *)malloc(1152+1);
+	getline(&str, 1152, fp);
+	
+	if(fclose(fp)){
+		
+		printf("Problem pri zatvaranju /dev/matmul.\n");
+		return -1;	
+		
+	}
+	free(str);
+
 
 	return 0;
 }
