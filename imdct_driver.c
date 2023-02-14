@@ -385,7 +385,7 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
                 sine_block[3][j] = sine_block_rom_4[j];
             }
             
-            printk(KERN_ALERT"UPISAO sine_block");
+            //printk(KERN_ALERT"UPISAO sine_block");
             
             if (block_type[gr][ch] == 2){
                 n = 12;
@@ -395,7 +395,7 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
                 win_count = 1;
             }
 	        half_n = n / 2;
-            printk(KERN_WARNING"n: %d\n half_n: %d\n win_count: %d\n", n, half_n, win_count);
+            //printk(KERN_WARNING"n: %d\n half_n: %d\n win_count: %d\n", n, half_n, win_count);
 
             //s = samples2[gr][ch][1];
             //printk(KERN_WARNING"s: %d\n",s);
@@ -435,10 +435,10 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
 	    	    	prev_samples[ch][block][i] = sample_block[18 + i];
 	    	    }
             }
-                printk(KERN_ALERT"ODRADIO Overlap");
+                //printk(KERN_ALERT"ODRADIO Overlap");
             
 
-                printk(KERN_ALERT"ISPIS");
+                //printk(KERN_ALERT"ISPIS");
                 for(i = 0; i < 576; i++){
                     bram_a[i] = samples2[0][0][i];
                     //printk(KERN_WARNING"bram_a[%d]: %d\n",i, bram_a[i]); 

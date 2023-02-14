@@ -216,6 +216,10 @@ fp = fopen("/dev/IMDCT", "w");
 	printf("	********************************\n");
 	
 	fputs("start = 1",fp);
+	sleep(0.5);
+	sleep(0.5);
+	sleep(0.5);
+	sleep(0.5);
 	
 if(fclose(fp)){
 		
@@ -237,7 +241,7 @@ fp = fopen("/dev/bram_a", "r");
 	}
 	
 	str = (char *)malloc(broj_bajtova+1);
-	getline(&str, broj_bajtova, fp);
+	getline(&str, &broj_bajtova, fp);
 	
 	if(fclose(fp)){
 		
