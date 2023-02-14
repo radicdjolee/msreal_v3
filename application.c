@@ -12,7 +12,8 @@ int main(void){
 	int  *bram_a_txt_array, *bram_b_txt_array;
     size_t size = 0;
 	int i = 0;
-	char str[20];
+	char *str;
+	size_t broj_bajtova = 36;
 	//char *text = "2,2,2,2,2,2,2,2,2,2,2,";
     
 
@@ -216,17 +217,17 @@ fp = fopen("/dev/IMDCT", "w");
 	
 	fputs("start = 1",fp);
 	
-	if(fclose(fp)){
+if(fclose(fp)){
 		
-		printf("Problem pri zatvaranju /dev/IMDCT.\n");
-		return -1;	
-    }
+	printf("Problem pri zatvaranju /dev/IMDCT.\n");
+	return -1;	
+}
 
 	printf("	*************************\n");
 	printf("	**Rezultat IMDCT**\n");
 	printf("	*************************\n");
 	
-	fp = fopen("/dev/bram_a", "r");
+fp = fopen("/dev/bram_a", "r");
 	
 	if(fp==NULL){
 		
@@ -235,8 +236,8 @@ fp = fopen("/dev/IMDCT", "w");
 		
 	}
 	
-	str = (char *)malloc(1152+1);
-	getline(&str, 1152, fp);
+	str = (char *)malloc(broj_bajtova+1);
+	getline(&str, broj_bajtova, fp);
 	
 	if(fclose(fp)){
 		
