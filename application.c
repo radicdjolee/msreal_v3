@@ -58,6 +58,7 @@ fp = fopen("/dev/IMDCT", "w");
 		return -1;
 	}
 
+	sleep(0.5);
 	printf("******************************************\n");
 	printf("**Upisujem block_type_00=0 u /dev/IMDCT.**\n");
 	printf("******************************************\n");
@@ -78,6 +79,7 @@ fp = fopen("/dev/IMDCT", "w");
 		
 	}
 
+	sleep(0.5);
 	printf("******************************************\n");
 	printf("**Upisujem block_type_01=0 u /dev/IMDCT.**\n");
 	printf("******************************************\n");
@@ -97,6 +99,7 @@ fp = fopen("/dev/IMDCT", "w");
 		return -1;
 	}
 
+	sleep(0.5);
 	printf("******************************************\n");
 	printf("**Upisujem block_type_10=0 u /dev/IMDCT.**\n");
 	printf("******************************************\n");
@@ -115,6 +118,7 @@ fp = fopen("/dev/IMDCT", "w");
 		return -1;
 	}
 
+	sleep(0.5);
 	printf("******************************************\n");
 	printf("**Upisujem block_type_10=0 u /dev/IMDCT.**\n");
 	printf("******************************************\n");
@@ -133,6 +137,7 @@ fp = fopen("/dev/IMDCT", "w");
 		return -1;
 	}
 
+	sleep(0.5);
 	printf("******************************************\n");
 	printf("**Upisujem block_type_11=0 u /dev/IMDCT.**\n");
 	printf("******************************************\n");
@@ -151,6 +156,7 @@ fp = fopen("/dev/IMDCT", "w");
 		return -1;
 	}
 
+	sleep(0.5);
 	printf("*******************************\n");
 	printf("**Upisujem gr=0 u /dev/IMDCT.**\n");
 	printf("*******************************\n");
@@ -169,6 +175,7 @@ fp = fopen("/dev/IMDCT", "w");
 		return -1;
 	}
 	
+	sleep(0.5);
 	printf("********************************\n");
 	printf("**Upisujem ch=0 u /dev/IMDCT.**\n");
 	printf("********************************\n");
@@ -187,6 +194,7 @@ fp = fopen("/dev/IMDCT", "w");
 		return -1;
 	}
 	
+	sleep(0.5);
 	printf("********************************\n");
 	printf("**Upisujem start=1 u /dev/IMDCT.**\n");
 	printf("********************************\n");
