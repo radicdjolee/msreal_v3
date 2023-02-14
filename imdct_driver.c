@@ -147,7 +147,7 @@ ssize_t IMDCT_read(struct file *f, char __user *buffer, size_t length, loff_t *o
         len = scnprintf(buff,BRAM_SIZE, "%d,", value);
         *offset += len;
 
-        printk(KERN_NOTICE"buff[%d] = %s", q, buff);
+        printk(KERN_NOTICE"bram_a[%d] = %s", q, buff);
         ret = copy_to_user(buffer, buff, len);
         if(ret){
             return -EFAULT;
@@ -166,7 +166,7 @@ ssize_t IMDCT_read(struct file *f, char __user *buffer, size_t length, loff_t *o
         value = bram_b[q];
         len = scnprintf(buff,BRAM_SIZE, "%d,", value);
         *offset += len;
-        printk(KERN_NOTICE"buff[%d] = %s", q, buff);
+        printk(KERN_NOTICE"bram_b[%d] = %s", q, buff);
         ret = copy_to_user(buffer, buff, len);
         if(ret){
             return -EFAULT;
@@ -226,7 +226,6 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
     buff[length] = '\0';
 
     printk(KERN_NOTICE"buff = %s",buff);
-    printk(KERN_NOTICE"length = %zu",length);
 
     if(minor == 0){ //ako upisujemo u bram_a
     
