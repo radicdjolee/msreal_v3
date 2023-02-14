@@ -27,8 +27,8 @@ int main(void){
 	}
 
 	for( i=0; i<1152; i++ ){
-		sprinf(str, "[%d] = 2", i);
-		fputs(str,fp);
+		fprintf(fs, "[%s] = %d",i, 2);
+		fflush(fs);
 	}
 
 	if(fclose(fp)){	
