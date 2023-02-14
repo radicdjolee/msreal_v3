@@ -457,6 +457,7 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
         }else{
             ready = 0;
         }
+        return length;    
     }
 }
 
