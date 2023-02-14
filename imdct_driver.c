@@ -106,20 +106,16 @@ void getIMDCT(void){
         for ( k = 0; k < half_n; k++) {
             
             s = samples2[gr][ch][18 * block + half_n * win + k];
-            //printk(KERN_WARNING"s: %d\n", s);
+
             if( half_n == 18 ){
-                xi_1 = s * cos_rom[k + ( i * 6 )];
+                xi_1 = s * cos_rom[k + ( i * 18 )];
                 xi = xi + xi_1;
-                //brojac_xi ++;
-                //printk(KERN_WARNING"counter: %d\n", brojac_xi);
-                // printk(KERN_WARNING"xi: %d\n", xi);
 
             }else if(half_n == 6){
-                //printk(KERN_ALERT"half_n 6");
                 xi_1 = s * cos_rom[k + ( i * 6 )];
                 xi = xi + xi_1;
             }else{
-                //printk(KERN_ALERT"GRESKA: half_n nije ni 6 ni 18");
+                printk(KERN_ALERT"GRESKA: half_n nije ni 6 ni 18");
             }
 
         }
@@ -141,8 +137,7 @@ ssize_t IMDCT_read(struct file *f, char __user *buffer, size_t length, loff_t *o
     ssize_t bram_a_size;
     minor = MINOR(f->f_inode->i_rdev);
     printk("IMDCT read: %d minor\n", minor);
-    //printk(KERN_NOTICE "Device file is rad at offset = %i, read bytes count =%u\n",(int)*offset, (unsigned int)length);
-
+    
     if(endRead == 1){
         endRead = 0;
         return 0;
@@ -249,11 +244,9 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
         }
 
         for(j = 0; j < 576; j++ ){
-                //samples2[0][0][j] = 2;
                 samples2[0][0][j] = bram_a[j];
         }
         for(j = 576; j < 1152; j++ ){
-                //samples2[0][1][j] = 2;
                 samples2[0][1][j] = bram_a[j];
         }
   
@@ -275,11 +268,9 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
         }
 
         for(j = 0; j < 576; j++ ){
-                //samples2[1][0][j] = 2;
                 samples2[0][0][j] = bram_b[j];
         }
         for(j = 576; j < 1152; j++ ){
-                //samples2[1][1][j] = 2;
                 samples2[0][1][j] = bram_b[j];
         }
         printk("MINOR 1 write\n");
@@ -385,8 +376,6 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
                 sine_block[3][j] = sine_block_rom_4[j];
             }
             
-            //printk(KERN_ALERT"UPISAO sine_block");
-            
             if (block_type[gr][ch] == 2){
                 n = 12;
                 win_count = 3;
@@ -395,10 +384,6 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
                 win_count = 1;
             }
 	        half_n = n / 2;
-            //printk(KERN_WARNING"n: %d\n half_n: %d\n win_count: %d\n", n, half_n, win_count);
-
-            //s = samples2[gr][ch][1];
-            //printk(KERN_WARNING"s: %d\n",s);
 
             for( sample = 0; sample < 576 ;sample += 18){
                 for ( block = 0; block < 32; block++) {
@@ -406,10 +391,7 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
                         getIMDCT();
                     }
                 } 
-                
 
-               //printk(KERN_ALERT"IZASAO IZ FOROVA");
-                
                 if (block_type[gr][ch] == 2) {
 	    	    	
 	    	    	for ( x=0;x<36;x++)
@@ -435,23 +417,16 @@ ssize_t IMDCT_write(struct file *f, const char __user *buffer, size_t length, lo
 	    	    	prev_samples[ch][block][i] = sample_block[18 + i];
 	    	    }
             }
-                //printk(KERN_ALERT"ODRADIO Overlap");
-            
 
-                //printk(KERN_ALERT"ISPIS");
                 for(i = 0; i < 576; i++){
                     bram_a[i] = samples2[0][0][i];
-                    //printk(KERN_WARNING"bram_a[%d]: %d\n",i, bram_a[i]); 
                     bram_b[i] = samples2[1][0][i];
-                   // printk(KERN_WARNING"bram_b[%d]: %d\n",i, bram_b[i]); 
                 }   
                 for(i = 576; i < 1152; i++){
                     bram_a[i] = samples2[0][1][i]; 
-                    //printk(KERN_WARNING"bram_a[%d]: %d\n",i, bram_a[i]); 
                     bram_b[i] = samples2[1][1][i];
-                    //printk(KERN_WARNING"bram_b[%d]: %d\n",i, bram_b[i]); 
                 }
-
+            start = 0;
             printk(KERN_ALERT"ZAVRSENA OBRADA");
                 
         }else{
