@@ -12,6 +12,7 @@ int main(void){
 	int  *bram_a_txt_array, *bram_b_txt_array;
     size_t size = 0;
 	int i = 0;
+	char str[20];
 	//char *text = "2,2,2,2,2,2,2,2,2,2,2,";
     
 
@@ -26,7 +27,8 @@ int main(void){
 	}
 
 	for( i=0; i<1152; i++ ){
-		fputs("[%d] = 2",fp);
+		sprinf(str, "[%d] = 2", i);
+		fputs(str,fp);
 	}
 
 	if(fclose(fp)){	
