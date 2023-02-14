@@ -200,7 +200,7 @@ fp = fopen("/dev/IMDCT", "w");
 		printf("Problem pri zatvaranju /dev/IMDCT.\n");
 		return -1;	
     }
-
+*/
 fp = fopen("/dev/IMDCT", "w");
 	
 	if(fp==NULL){
@@ -221,6 +221,6 @@ fp = fopen("/dev/IMDCT", "w");
 		printf("Problem pri zatvaranju /dev/IMDCT.\n");
 		return -1;	
     }
-*/
+
 	return 0;
 }
